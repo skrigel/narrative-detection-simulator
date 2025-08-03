@@ -1,11 +1,8 @@
-# Narrative Detection Simulator 🧠⚡️
+# Narrative Detection Simulator 
 
-A full-stack boilerplate for building Generative AI applications with:
-
-- ⚛️ Frontend: React + TypeScript + Vite + Tailwind
-- 🐍 Backend: FastAPI + Pydantic + Uvicorn
-- ☁️ Ready for integration with AWS (e.g. Bedrock, Lambda, S3)
-
+- Frontend: React + TypeScript + Vite + Tailwind
+- Backend: FastAPI + Pydantic + Uvicorn
+- Ready for integration with AWS (e.g. Bedrock, Lambda, S3)
 ---
 
 ## 📁 Project Structure Overview
@@ -28,7 +25,7 @@ A full-stack boilerplate for building Generative AI applications with:
 
 ### 🔧 Local Development
 
-#### ⬅️ Backend Setup (FastAPI + Poetry)
+#### Backend Setup (FastAPI + Poetry)
 ```bash
 cd backend
 poetry install
