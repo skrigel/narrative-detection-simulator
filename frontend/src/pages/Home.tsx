@@ -1,7 +1,11 @@
+import DashboardGraphic from '../assets/dashboard_graphic_1.png' 
+import SimGraphic from '../assets/sim_graphic.png' 
+import DetectionGraphic from '../assets/detect_graphic_1.png'
+
 export default function Home() {
   return (
     <div className="bg-gray-50 text-gray-800 min-h-screen">
-      <main className="max-w-7xl mx-auto px-6 py-12 space-y-24">
+      <main className="max-w-7xl mx-auto px-6 py-8 space-y-10">
         {/* Hero Section */}
         <section className="text-center space-y-4">
           <p className="text-sm font-medium text-blue-600 uppercase tracking-wide">
@@ -26,19 +30,26 @@ export default function Home() {
               drift, and hijack potential.
             </p>
           </div>
-          <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm h-48 flex items-center justify-center">
-            {/* Placeholder for graphic */}
-            <span className="text-gray-400">[ Simulation Graphic Placeholder ]</span>
-          </div>
+           <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm h-60 flex items-center justify-center">
+    <img
+      src={SimGraphic}
+      alt="Simulation Graphic"
+      className="max-h-full max-w-full object-contain"
+    />
+  </div>
         </section>
 
         <hr className="border-gray-200" />
 
         {/* Section 2: Manipulation Detection */}
         <section className="section grid md:grid-cols-2 gap-8 items-center">
-          <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm h-48 flex items-center justify-center">
-            <span className="text-gray-400">[ Detection Graphic Placeholder ]</span>
-          </div>
+  <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm h-60 flex items-center justify-center">
+    <img
+      src={DetectionGraphic}
+      alt="Detection Graphic"
+      className="max-h-full max-w-full object-contain"
+    />
+  </div>
           <div>
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Narrative Manipulation Detection</h2>
             <p className="text-gray-600">
@@ -59,9 +70,13 @@ export default function Home() {
               Build muscle memory for live brand defense.
             </p>
           </div>
-          <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm h-48 flex items-center justify-center">
-            <span className="text-gray-400">[ Dashboard Preview Placeholder ]</span>
-          </div>
+          <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm h-60 flex items-center justify-center">
+    <img
+      src={DashboardGraphic}
+      alt="Dashboard Graphic"
+      className="max-h-full max-w-full object-contain"
+    />
+  </div>
         </section>
       </main>
     </div>

@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home"
 import Header from "./components/Header";
 import SimulationView from './pages/SimulationView'
-import NarrativeLibraryView from "./pages/NarrativeLibraryView";
+import SyntheticGeneratorView from "./pages/SyntheticGeneratorView";
 import Contact from "./pages/Contact";
 import { AppProvider } from "./context/AppContext";
 
@@ -14,7 +14,7 @@ function App() {
         <main className="p-6">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/generator" element={<NarrativeLibraryView />} />
+            <Route path="/generator" element={<SyntheticGeneratorView />} />
             <Route path="/simulations" element={<SimulationView />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>

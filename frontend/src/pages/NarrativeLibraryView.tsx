@@ -3,7 +3,7 @@ import { generateNarrative } from "../api/narrativeService";
 import { type NarrativeRequest, type NarrativeResponse } from "../types/narrative";
 
 export default function NarrativeLibraryView() {
-  const [input, setInput] = useState<NarrativeRequest>({ frame: "", tone: "neutral" });
+  const [input, setInput] = useState<NarrativeRequest>({ frame: "", tone: "neutral" , emotion: ""});
   const [result, setResult] = useState<NarrativeResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -29,14 +29,23 @@ export default function NarrativeLibraryView() {
         onChange={(e) => setInput({ ...input, frame: e.target.value })}
       />
 
+      <input
+        type="text"
+        placeholder="Narrative emotion"
+        className="border p-2 mb-2 w-full"
+        value={input.emotion}
+        onChange={(e) => setInput({ ...input, emotion: e.target.value })}
+      />
+
+
       <select
         value={input.tone}
         onChange={(e) => setInput({ ...input, tone: e.target.value })}
         className="border p-2 mb-4 w-full"
       >
         <option value="neutral">Neutral</option>
-        <option value="angry">Angry</option>
-        <option value="supportive">Supportive</option>
+        <option value="angry">Negative</option>
+        <option value="supportive">Positive</option>
       </select>
 
       <button onClick={handleSubmit} className="bg-blue-600 text-white px-4 py-2 rounded">
