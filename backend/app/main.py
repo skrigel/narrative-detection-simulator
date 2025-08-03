@@ -8,7 +8,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "https://narrative-detection-simulator-1.onrender.com"],  # or ["*"] for all
+    allow_origins=["http://localhost:5173", "https://narrative-detection-simulator-1.onrender.com", "https://narrative-detection-simulator.onrender.com"],  # or ["*"] for all
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
