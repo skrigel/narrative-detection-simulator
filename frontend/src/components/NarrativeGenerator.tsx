@@ -24,6 +24,7 @@ export default function NarrativeGenerator<T extends NarrativeRequestBase>({
   const [input, setInput] = useState<T>(initialRequest);
   const [result, setResult] = useState<NarrativeResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSubmit = async () => {
     if (!input.frame || !input.tone || !input.emotion) {
@@ -32,10 +33,14 @@ export default function NarrativeGenerator<T extends NarrativeRequestBase>({
     }
 
     try {
+      setIsLoading(true);
+      setResult(null)
       const generated = await generator(input);
       setResult(generated);
+      setIsLoading(false);
       setError(null);
     } catch (err: any) {
+      setIsLoading(false);
       setError(err.message || "Something went wrong.");
     }
   };
@@ -99,11 +104,11 @@ export default function NarrativeGenerator<T extends NarrativeRequestBase>({
           onClick={handleSubmit}
           className="bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700 transition"
         >
-          Generate
+          {isLoading ? "Generating..." : "Generate"}
         </button>
       </div>
 
-      {result && (
+      {result ? (
         <div className="bg-white border border-gray-200 rounded shadow-sm p-6">
           <p className="mb-2">
             <span className="font-semibold">Narrative Content:</span> {result.content}
@@ -118,7 +123,9 @@ export default function NarrativeGenerator<T extends NarrativeRequestBase>({
             <span className="font-semibold">Virality Score:</span> {result.virality_score}
           </p>
         </div>
-      )}
+      ) :  <div className="bg-white border border-gray-200 rounded shadow-sm p-6">
+         <p className="mb-2">No narrative generated yet.</p>
+        </div>}
 
       {error && <p className="text-red-600 mt-4">{error}</p>}
     </div>
