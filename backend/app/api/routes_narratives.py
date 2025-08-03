@@ -6,4 +6,7 @@ router = APIRouter()
 
 @router.post("/narratives/generate", response_model=NarrativeResponse)
 def generate_narratives(payload: NarrativeRequest):
-    return generate_variants(payload)
+    print("Generating narrative variants...")
+    response = generate_variants(payload)
+    print(f"Generated variants.")
+    return response
