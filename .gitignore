@@ -179,3 +179,27 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+
+# --- Frontend (Vite, Node, React) ---
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.cache/
+frontend/.DS_Store
+
+# --- Logs ---
+*.log
+*.out
+*.tmp
+
+# --- IDEs / Editors ---
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+
+# --- System ---
+Thumbs.db
+ehthumbs.db
