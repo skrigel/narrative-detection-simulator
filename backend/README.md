@@ -24,6 +24,11 @@ Built with:
 poetry install
 ```
 
+### 1. Run the application
+```bash
+uvicorn app.main:app --reload
+```
+
 ## Key files
 
 ```markdown

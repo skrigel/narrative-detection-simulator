@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from models.narrative_models import NarrativeRequest, NarrativeResponse
-from services.narrative_service import generate_variants
+from app.models.narrative_models import NarrativeRequest, NarrativeResponse
+from app.services.narrative_service import generate_variants
 
 router = APIRouter()
 
