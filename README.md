@@ -1,4 +1,4 @@
-# GenAI Project Boilerplate 🧠⚡️
+# Narrative Detection Simulator 🧠⚡️
 
 A full-stack boilerplate for building Generative AI applications with:
 
@@ -15,6 +15,33 @@ A full-stack boilerplate for building Generative AI applications with:
 ├── README
 ├── docker-compose.yaml
 └── LICENSE
+```
+
+## 🚀 Quick Start Setup
+
+### Prerequisites
+- Node.js >= 18.x (for frontend)
+- Python 3.11 (recommended)
+- Poetry >= 1.8.0 (for backend)
+
+---
+
+### 🔧 Local Development
+
+#### ⬅️ Backend Setup (FastAPI + Poetry)
+```bash
+cd backend
+poetry install
+poetry env use python3.11
+source $(poetry env info --path)/bin/activate
+uvicorn app.main:app --reload
+```
+
+#### Frontend Setup (React)
+```bash
+cd frontend
+npm install
+npm run dev
 ```
 
 ## Project Structure Detail

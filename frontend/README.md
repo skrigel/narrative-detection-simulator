@@ -1,46 +1,40 @@
-# GenAI Frontend
+# ⚛️ Frontend – React + Vite + Tailwind
 
-This is the frontend UI for your Generative AI project using:
-
+This is the frontend interface for interacting with the narrative detection engine, using:
 - ⚛️ React + TypeScript
 - ⚡ Vite
 - 🎨 Tailwind CSS
 - 🧭 React Router
 - 🌐 API layer to communicate with FastAPI backend
 
+## ⚙️ Setup Instructions
+
+### Prerequisites
+- Node.js >= 18.x
+- npm or yarn
+
 ---
 
-## 🚀 Run Locally
+### 1. Install Dependencies
 
 ```bash
 npm install
+```
+
+### 🚀  Run Locally
+
+```bash
 npm run dev
 ```
 
-## Folder Structure
+## 📂 Key Folders
+
 ```markdown
-├── node_modules
-├── src
-│   ├── App.css
-│   ├── App.tsx
-│   ├── assets
-│   ├── components
-│   ├── context
-│   ├── hooks
-│   ├── index.css
-│   ├── main.tsx
-│   ├── pages
-│   ├── services
-│   ├── types
-│   ├── utils
-│   └── vite-env.d.ts
-├── README.md
-├── index.html
-├── tsconfig.app.json
-├── tsconfig.json
-├── tsconfig.node.json
-├── vite.config.ts
-├── package-lock.json
-├── package.json
-└── webpack.config.js
+- src/components/ – UI components (narrative cards, spread graphs)
+
+- src/pages/ – Views for simulation, dashboards, etc.
+
+- src/api/ – API wrappers for backend endpoints
+
+- src/context/ – Shared global state
 ```

@@ -1,35 +1,35 @@
-# GenAI Backend
+# 🐍 Backend – FastAPI + Poetry + Uvicorn
 
-This is the backend API for your Generative AI project, built with:
+This is the backend service for the Narrative Detection Simulator. It includes:
+- REST API (FastAPI)
+- Synthetic graph and simulation engines
+- Narrative variant generation and detection logic
+
+Built with:
 
 - 🐍 FastAPI
 - ⚡ Uvicorn (ASGI server)
 - 🧱 Pydantic (data models)
 - 🧠 Ready for GenAI integrations (e.g., Amazon Bedrock)
 
----
 
-## ✅ Setup
+## ⚙️ Setup Instructions
 
+### Prerequisites
+- Python 3.11
+- Poetry >= 1.8.0
+
+### 1. Install Dependencies
 ```bash
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-uvicorn app.main:app --reload
+poetry install
 ```
 
-## Folder Structure
+## Key files
+
 ```markdown
-├── README.md
-├── app
-│   ├── api
-│   │   ├── __init__.py
-│   │   └── routes.py
-│   ├── config.py
-│   ├── main.py
-│   ├── models
-│   │   └── schema.py
-│   └── services
-│       └── generator.py
-└── requirements.txt
+- app/main.py – FastAPI entrypoint
+
+- api/ – Route modules (e.g., narratives, simulation)
+
+- services/ – Core business logic (generation, simulation, detection)
 ```
