@@ -41,7 +41,7 @@ npm install
 npm run dev
 ```
 
-## Module Overview
+## Module Overview [IN PROGRESS]
 ```
                         ┌────────────────────────────┐
                         │        Frontend UI         │
