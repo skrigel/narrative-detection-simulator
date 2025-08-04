@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from app.models.narrative_models import NarrativeRequest, NarrativeResponse
 from app.models.chat_models import Message, ChatCompletionRequest
 from app.services.synthetic_service import generate_synthetic_variants, generate_prompt
-from app.api.routes_chat import call_together_api
+from app.core.llm_client import call_together_api
 import json
 
 router = APIRouter()
@@ -50,38 +50,3 @@ def generate_narratives_completion(payload: NarrativeRequest):
         emotion=payload.emotion,
         virality_score=virality_score
     )
-
-
-## Outdated endpoint
-
-# @router.post("/synthetic/generate_completion", response_model=NarrativeResponse)
-# def generate_narratives_completion(payload: NarrativeRequest):
-#     # Generate a prompt based on NarrativeRequest
-#     prompt = generate_prompt(payload)
-
-#     # Format the prompt into a chat completion request
-#     messages = [
-#         Message(role="system", content="You are a political narrative strategist."),
-#         Message(role="user", content=prompt)
-#     ]
-
-#     #
-#     response_text = call_together_api(messages=messages, model="meta-llama/Llama-3.3-70B-Instruct-Turbo-Free")
-
-#     try: 
-#         response_text_json = json.loads(response_text)
-#     except json.JSONDecodeError:
-#         raise ValueError("Error decoding response from Together API")
-
-
-#     response_text = response_text_json.get("content", "")
-#     virality_score = response_text_json.get("virality_score", 0.0)
-
-#     # Convert the output into the expected shape
-#     return NarrativeResponse(
-#         content=response_text,
-#         variant=payload.frame,
-#         tone=payload.tone,
-#         emotion=payload.emotion,
-#         virality_score=virality_score  # Placeholder — refine later
-#     )

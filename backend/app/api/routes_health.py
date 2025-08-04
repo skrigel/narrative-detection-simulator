@@ -2,6 +2,6 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-@router.get("/hello")
+@router.get("/")
 def hello():
     return {"message": "Hello from the backend!"}
