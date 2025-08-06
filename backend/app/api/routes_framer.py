@@ -1,20 +1,30 @@
-from fastapi import APIRouter
-from app.models.narrative_models import NarrativeRequest, NarrativeResponse
-from app.models.chat_models import Message, ChatCompletionRequest
-from app.services.framer_service import extract_article_text
-from app.core.llm_client import call_together_api
-from app.services.framer_service import extract_frame_from_url
+from fastapi import APIRouter, Query
+from app.models.narrative_models import NarrativeResponse
+from app.models.framer_models import NarrativeFrame, NarrativeFrameList
+from app.services.framer_service import extract_frame_from_url, extract_popular_frames
 from app.core.nlp_utils import extract_entities_emotion_ideology
-import json
 
 router = APIRouter()
 
 
-@router.get("/framer/from_url", response_model=NarrativeResponse)
-def generate_synthetic_narratives(url: str):
-    
+@router.get("/framer/from_url", response_model=NarrativeFrame)
+def generate_frames_from_url(
+    url: str = Query(..., description="URL to extract frames from"),
+    emotion: str = Query("neutral", description="Optional emotion context")
+):
     print("Generating synthetic narrative variants...")
-    fields = extract_frame_from_url(url)
+    fields = extract_frame_from_url(url=url)
+    print("Generated synthetic variants.")
+    return fields
 
-    print(f"Generated synthetic variants.")
+
+@router.get("/framer/popular", response_model=NarrativeFrameList)
+def generate_popular_frames(
+    num_articles: int = Query(10, description="Number of articles to generate frames from")
+):
+    print("Generating popular narrative frames...")
+    fields = extract_popular_frames(num_articles=num_articles)
+    print("Generated popular frames.")
+
+
     return fields

@@ -9,6 +9,8 @@ class NarrativeFrame(BaseModel):
     emotion: str
     entities: List[str]
 
+NarrativeFrameList = List[NarrativeFrame]
+
 class NarrativeDomain(BaseModel):
     name: str
     description: str

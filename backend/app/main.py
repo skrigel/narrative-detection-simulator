@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes_health import router as health_router
 from app.api.routes_narratives import router as narratives_router
 from app.api.routes_synthetic import router as synthetic_router
+from app.api.routes_framer import router as framer_router
 
 app = FastAPI()
 
@@ -16,5 +17,6 @@ app.add_middleware(
 
 
 app.include_router(narratives_router, prefix="/api")
+app.include_router(framer_router, prefix="/api")
 app.include_router(health_router, prefix="/api")
 app.include_router(synthetic_router, prefix="/api")
