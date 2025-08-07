@@ -1566,14 +1566,14 @@ files = [
 
 [[package]]
 name = "openai"
-version = "1.98.0"
+version = "1.99.1"
 description = "The official Python library for the openai API"
 optional = false
 python-versions = ">=3.8"
 groups = ["main"]
 files = [
-    {file = "openai-1.98.0-py3-none-any.whl", hash = "sha256:b99b794ef92196829120e2df37647722104772d2a74d08305df9ced5f26eae34"},
-    {file = "openai-1.98.0.tar.gz", hash = "sha256:3ee0fcc50ae95267fd22bd1ad095ba5402098f3df2162592e68109999f685427"},
+    {file = "openai-1.99.1-py3-none-any.whl", hash = "sha256:8eeccc69e0ece1357b51ca0d9fb21324afee09b20c3e5b547d02445ca18a4e03"},
+    {file = "openai-1.99.1.tar.gz", hash = "sha256:2c9d8e498c298f51bb94bcac724257a3a6cac6139ccdfc1186c6708f7a93120f"},
 ]
 
 [package.dependencies]
@@ -2727,14 +2727,14 @@ files = [
 
 [[package]]
 name = "together"
-version = "1.5.21"
+version = "1.5.23"
 description = "Python client for Together's Cloud Platform!"
 optional = false
 python-versions = "<4.0,>=3.10"
 groups = ["main"]
 files = [
-    {file = "together-1.5.21-py3-none-any.whl", hash = "sha256:35e6c0072033a2e5f1105de8781e969f41cffc85dae508b6f4dc293360026872"},
-    {file = "together-1.5.21.tar.gz", hash = "sha256:59adb8cf4c5b77eca76b8c66a73c47c45fd828aaf4f059f33f893f8c5f68f85a"},
+    {file = "together-1.5.23-py3-none-any.whl", hash = "sha256:6c994e47db0f58cea2ba30e0b2be4dae54460d6729a2c9053c1ac8610ee9ff37"},
+    {file = "together-1.5.23.tar.gz", hash = "sha256:d2aba903d49cdefb6a153f8d89bb45e22a81bd4d1a16e467589dd25b05aa1c4e"},
 ]
 
 [package.dependencies]
