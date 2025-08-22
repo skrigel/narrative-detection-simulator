@@ -4,18 +4,20 @@ from app.api.routes_health import router as health_router
 from app.api.routes_narratives import router as narratives_router
 from app.api.routes_synthetic import router as synthetic_router
 from app.api.routes_framer import router as framer_router
+from app.api.routes_simulations import router as simulation_router
 
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "https://narrative-detection-simulator-1.onrender.com", "https://narrative-detection-simulator.onrender.com"],  # or ["*"] for all
+    allow_origins=["http://localhost:5173", "http://localhost:8000", "https://narrative-detection-simulator-1.onrender.com", "https://narrative-detection-simulator.onrender.com"],  # or ["*"] for all
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 
+app.include_router(simulation_router, prefix="/api")  # ✅ THIS matters
 app.include_router(narratives_router, prefix="/api")
 app.include_router(framer_router, prefix="/api")
 app.include_router(health_router, prefix="/api")
