@@ -1,184 +1,5 @@
 
-// import React, { useEffect, useRef, useState } from "react";
-// import {
-//   select,
-//   type Selection,
-// } from "d3-selection";
-// import {
-//   forceSimulation,
-//   forceManyBody,
-//   forceLink,
-//   forceCenter,
-//   forceX,
-//   forceY,
-//   type ForceLink,
-// } from "d3-force";
-// import { drag, type D3DragEvent } from "d3-drag";
 import type { SimulationStep, SocialNode, SocialEdge } from "../types/simulation";
-
-// interface ForceGraphProps {
-//   steps: SimulationStep[];
-//   width?: number;
-//   height?: number;
-// }
-
-interface VisualEdge extends Omit<SocialEdge, string> {
-  source: SocialNode;
-  target: SocialNode;
-}
-
-// const ForceGraph: React.FC<ForceGraphProps> = ({ steps, width = 900, height = 600 }) => {
-//   const svgRef = useRef<SVGSVGElement | null>(null);
-//   const [chart, setChart] = useState<{
-//     update: (data: { nodes: SocialNode[]; links: VisualEdge[] }) => void;
-//   } | null>(null);
-
-//   const allNodes: SocialNode[] = [];
-//   const allLinks: SocialEdge[] = [];
-//   const seenNodes = new Set<number>();
-
-//   useEffect(() => {
-//     const svg = select(svgRef.current)
-//       .attr("viewBox", [-width / 2, -height / 2, width, height].join(" "))
-//       .attr("style", "max-width: 100%; height: auto; background: #111");
-
-//     const graphGroup = svg.append("g");
-
-//     let linkLayer = graphGroup.append("g").attr("class", "links");
-//     let nodeLayer = graphGroup.append("g").attr("class", "nodes");
-
-//     let linkGroup = linkLayer.selectAll<SVGLineElement, VisualEdge>("line");
-//     let nodeGroup = nodeLayer.selectAll<SVGCircleElement, SocialNode>("circle");
-
-//     const chartObj = {
-//       update({ nodes, links }: { nodes: SocialNode[]; links: VisualEdge[] }) {
-//         const oldNodes = new Map<number, SocialNode>(
-//           (nodeGroup.data() as SocialNode[]).map(d => [d.id, d])
-//         );
-
-//         const newNodes = nodes.map(d => ({ ...oldNodes.get(d.id), ...d }));
-
-//         nodeGroup = nodeLayer
-//           .selectAll<SVGCircleElement, SocialNode>("circle")
-//           .data(newNodes, d => d.id)
-//           .join(
-//             enter => enter
-//               .append("circle")
-//               .attr("r", 6)
-//               .attr("fill", d => {
-//                 switch (d.ideology) {
-//                   case "left": return "#66c2a5";
-//                   case "right": return "#fc8d62";
-//                   case "centrist": return "#8da0cb";
-//                   default: return "#999";
-//                 }
-//               })
-//               .call(
-//                 drag<SVGCircleElement, SocialNode>()
-//                   .on("start", (event, d) => {
-//                     if (!event.active) simulation.alphaTarget(0.3).restart();
-//                     d.fx = d.x;
-//                     d.fy = d.y;
-//                   })
-//                   .on("drag", (event, d) => {
-//                     d.fx = event.x;
-//                     d.fy = event.y;
-//                   })
-//                   .on("end", (event, d) => {
-//                     if (!event.active) simulation.alphaTarget(0);
-//                     d.fx = undefined;
-//                     d.fy = undefined;
-//                   })
-//               )
-//               .append("title")
-//               .text(d => d.name)
-        
-//           );
-
-//         linkGroup = linkLayer
-//             .selectAll<SVGLineElement, VisualEdge>("line") // ✅ explicitly type selection
-//             .data(links, (d) => `${d.source.id}-${d.target.id}`) // ✅ now 'd' is typed correctly
-//             .join("line")
-//             .attr("stroke", "#aaa")
-//             .attr("stroke-width", 1.5);
-
-//         simulation.nodes(newNodes);
-//         simulation.force<ForceLink<SocialNode, VisualEdge>>("link")?.links(links);
-//         simulation.alpha(1).restart();
-//       }
-//     };
-
-//     const simulation = forceSimulation<SocialNode>()
-//       .force("charge", forceManyBody().strength(-100))
-//       .force("link", forceLink<SocialNode, VisualEdge>().id(d => d.id).distance(100))
-//       .force("x", forceX())
-//       .force("y", forceY())
-//       .force("center", forceCenter(0, 0))
-//       .on("tick", () => {
-//         linkGroup
-//           .attr("x1", d => d.source.x ?? 0)
-//           .attr("y1", d => d.source.y ?? 0)
-//           .attr("x2", d => d.target.x ?? 0)
-//           .attr("y2", d => d.target.y ?? 0);
-
-//         nodeGroup
-//           .attr("cx", d => d.x ?? 0)
-//           .attr("cy", d => d.y ?? 0);
-//       });
-
-
-//     setChart(chartObj);
-//    return () => {
-//     simulation.stop(); // ✅ clean up the simulation properly
-//   };
-//   }, [width, height]);
-
-//   useEffect(() => {
-//     if (!chart || !steps.length) return;
-
-//     let i = 0;
-//     const interval = setInterval(() => {
-//       if (i >= steps.length) {
-//         clearInterval(interval);
-//         return;
-//       }
-
-//       const step = steps[i];
-
-//       for (const node of step.nodes) {
-//         if (!seenNodes.has(node.id)) {
-//           seenNodes.add(node.id);
-//           allNodes.push(node);
-//         }
-//       }
-
-//       allLinks.push(...step.links);
-
-//       const nodeMap = new Map<number, SocialNode>();
-//       for (const node of allNodes) {
-//         nodeMap.set(node.id, node);
-//       }
-
-//       const visualEdges: VisualEdge[]  = allLinks
-//         .map(edge => {
-//           const source = nodeMap.get(edge.source);
-//           const target = nodeMap.get(edge.target);
-//           if (!source || !target) return null;
-//           return { ...edge, source, target };
-//         })
-//         .filter((e): e is VisualEdge => e !== null);
-
-//       chart.update({ nodes: allNodes, links: visualEdges });
-//       i++;
-//     }, 1000);
-
-//     return () => clearInterval(interval);
-//   }, [chart, steps]);
-
-//   return <svg ref={svgRef} width={width} height={height} />;
-// };
-
-// export default ForceGraph;
 import React, { useEffect, useRef, useState } from "react";
 import {
   select,
@@ -193,14 +14,19 @@ import {
   forceY,
   type ForceLink,
 } from "d3-force";
-import { drag, type D3DragEvent } from "d3-drag";
-
+import { drag } from "d3-drag";
 
 interface ForceGraphProps {
   steps: SimulationStep[];
   width?: number;
   height?: number;
 }
+
+interface VisualEdge extends Omit<SocialEdge, string> {
+  source: SocialNode;
+  target: SocialNode;
+}
+
 
 
 
@@ -384,7 +210,7 @@ const ForceGraph: React.FC<ForceGraphProps> = ({ steps, width = 900, height = 60
       });
 
       // Convert links to visual edges with proper node references
-      const visualEdges: VisualEdge[] = allLinks
+      const mapped: (VisualEdge | null)[] = allLinks
         .map(link => {
           const sourceNode = nodeMap.get(link.source);
           const targetNode = nodeMap.get(link.target);
@@ -400,7 +226,11 @@ const ForceGraph: React.FC<ForceGraphProps> = ({ steps, width = 900, height = 60
             target: targetNode
           };
         })
-        .filter((edge): edge is VisualEdge => edge !== null);
+       
+      const visualEdges: VisualEdge[] = mapped.filter(
+        (edge): edge is VisualEdge => edge !== null
+      );
+
 
       // Update accumulated data
       setAccumulatedData({
