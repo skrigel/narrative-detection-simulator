@@ -1,5 +1,5 @@
 import { type SimulationRequest, type SimulationResponse } from "../types/simulation";
-const API_BASE_URL = import.meta.env.FAST_API_URL || "http://localhost:8000/api";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8000/api";
 
 export const generateSimulation = async (payload: SimulationRequest): Promise<SimulationResponse> => {
   const response = await fetch(`${API_BASE_URL}/simulation/generate`, {
