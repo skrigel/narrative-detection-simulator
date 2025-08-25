@@ -50,10 +50,12 @@ const ForceGraph: React.FC<ForceGraphProps> = ({ steps, width = 900, height = 60
     // Clear existing content
     svg.selectAll("*").remove();
 
-    // const graphGroup = svg.append("g");
-    // const linkLayer = graphGroup.append("g").attr("class", "links");
-    // const nodeLayer = graphGroup.append("g").attr("class", "nodes");
-
+    const graphGroup = svg.append("g");
+    const linkLayer = graphGroup.append("g").attr("class", "links");
+    const nodeLayer = graphGroup.append("g").attr("class", "nodes");
+    console.log("Graph layers created");
+    console.log("Link layer:", linkLayer);
+    console.log("Node layer:", nodeLayer);
     // Create simulation
     const simulation = forceSimulation<SocialNode>()
       .force("charge", forceManyBody().strength(-100))
