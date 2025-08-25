@@ -2,8 +2,7 @@
 import type { SimulationStep, SocialNode, SocialEdge } from "../types/simulation";
 import React, { useEffect, useRef, useState } from "react";
 import {
-  select,
-  type Selection,
+  select
 } from "d3-selection";
 import {
   forceSimulation,
@@ -51,9 +50,9 @@ const ForceGraph: React.FC<ForceGraphProps> = ({ steps, width = 900, height = 60
     // Clear existing content
     svg.selectAll("*").remove();
 
-    const graphGroup = svg.append("g");
-    const linkLayer = graphGroup.append("g").attr("class", "links");
-    const nodeLayer = graphGroup.append("g").attr("class", "nodes");
+    // const graphGroup = svg.append("g");
+    // const linkLayer = graphGroup.append("g").attr("class", "links");
+    // const nodeLayer = graphGroup.append("g").attr("class", "nodes");
 
     // Create simulation
     const simulation = forceSimulation<SocialNode>()
